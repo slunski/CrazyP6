@@ -1,19 +1,22 @@
 13/10/2009
 
-[18:40] < shinobi-cl> how should i define something like tr/STRING/es so that translates the string
+[18:40] < shinobi-cl> how should i define something like tr/STRING/es so that
+             translates the string
 [18:40] < shinobi-cl> i mean, define tr// like a new operator...
 [18:40] <@moritz_> the perl6ish way would look like Q:trans<es> { STRING }
 [18:41] <@PerlJam> shinobi-cl: sub tr ($str,$lang) { ... }  #  :-)
 [18:41] <@moritz_> and you'd define it with macros, which are NYI
 [18:41] <@moritz_> (Not Yet Implemented)
-[18:41] <@pmichaud>  it would still help to know what those macros might look like, though :)
+[18:41] <@pmichaud>  it would still help to know what those macros might look
+             like, though :)
 [18:41] <@moritz_> aye
 [18:41] <@pmichaud> an example would make the macros easier to impl
 [18:41] < shinobi-cl> mmm ok, thanks :)
 
 
 
-[16:07] <+pugs_svn> r28778 | moritz++ | [t/spec] test for RT #69738: array indexing with Rats
+[16:07] <+pugs_svn> r28778 | moritz++ | [t/spec] test for RT #69738: array
+          indexing with Rats
 [16:08] <@moritz_> rakudo: say <a b c>[5/4]
 [16:08] <+p6eval> rakudo 609cc2: OUTPUT<<bNL>>
 
@@ -24,11 +27,23 @@ grammar PlusMinusPerl is Perl {
 }
 
 
-Specifically, we want to be able to write parsers easily in Perl, which means that we need some way of matching a token stream against something like a set of regular expressions. You can think of a token stream as a funny kind of string. So if the "given" of a switch statement is a token stream, the regular expressions matched against it may have special abilities relating to the current parse's data structure. All the regular expressions of such a switch statement will likely be implicitly anchored to the current parse location, for instance. There may be special tokens referring to terminals and non-terminals. Basically, think of something like a yacc grammar, where alternative pattern/action grammar rules are most naturally expressed via switch statement cases. More on that in the next Apocalypse.
+Specifically, we want to be able to write parsers easily in Perl, which means
+that we need some way of matching a token stream against something like a
+set of regular expressions. You can think of a token stream as a funny kind of
+string. So if the "given" of a switch statement is a token stream, the regular
+expressions matched against it may have special abilities relating to the
+current parse's data structure. All the regular expressions of such a switch
+statement will likely be implicitly anchored to the current parse location,
+for instance. There may be special tokens referring to terminals and
+non-terminals. Basically, think of something like a yacc grammar, where
+alternative pattern/action grammar rules are most naturally expressed via
+switch statement cases. More on that in the next Apocalypse.
 
 
 
-Also, it's allowed to intersperse ordinary code between the cases, in which case the code must be executed only if the cases above it fail to match. For example, this should work as indicated by the print statements:
+Also, it's allowed to intersperse ordinary code between the cases, in which
+case the code must be executed only if the cases above it fail to match. For
+example, this should work as indicated by the print statements:
 
     given $given {
         print "about to check $first";
@@ -51,7 +66,10 @@ stands for a single, anonymous scalar variable.
 
 
 
-But Perl has often been tagged as a language in which it's easy to write programs that are difficult to read, and it's no secret that regular expression syntax that has been the chief culprit. Funny that other languages have been borrowing Perl's regular expressions as fast as they can...
+But Perl has often been tagged as a language in which it's easy to write
+programs that are difficult to read, and it's no secret that regular expression
+syntax that has been the chief culprit. Funny that other languages have been
+borrowing Perl's regular expressions as fast as they can...
 
 
 
@@ -159,10 +177,12 @@ g p6eval<@pmichaud> 18:30 is parrotsketch
 
 13.11.2010:
 
-21:02 < sorear> ash_: as a general rule, if $?FOO is not implemented specially (and very few of
-                them are - $?POSITION comes to mind), it is treated as BEGIN { $*FOO }
+21:02 < sorear> ash_: as a general rule, if $?FOO is not implemented specially
+                (and very few of them are - $?POSITION comes to mind), it is
+				treated as BEGIN { $*FOO }
 21:02 < sorear> ie it picks up the version of $*FOO visible to the compiler
-21:03 < sorear> (how this works if your compiler isn't written in Perl 6 has never been established)
+21:03 < sorear> (how this works if your compiler isn't written in Perl 6 has
+                never been established)
 
 
 
@@ -211,8 +231,8 @@ g p6eval<@pmichaud> 18:30 is parrotsketch
 14:29 < sili> got it, so you don't have to write your stuff from right-to-left
 14:29 <+p6eval> nom: OUTPUT«-2 -1␤»
 14:30 < jnthn> Yeah, it can look really pretty
-14:30  jedai [~jedai@ARouen-551-1-133-101.w90-51.abo.wanadoo.fr] has quit [Ping timeout: 240 seconds]
-14:30 < masak> sili: you could think of it like a semicolon, except that the next statement gets "primed" with values. very much like pipes in Unix.
+14:30 < masak> sili: you could think of it like a semicolon, except that the
+               next statement gets "primed" with values. very much like pipes in Unix.
 14:30 < masak> nom: say <== grep * < 0 <== map * - 3 <== 1,2,3,4,5
 14:30 < sili> long live perl6
 14:30 <+p6eval> nom: OUTPUT«-2 -1␤»
@@ -226,17 +246,21 @@ g p6eval<@pmichaud> 18:30 is parrotsketch
 
 18:53  * djanatyn has been looking for ways to contribute
 18:53 < masak> here's my tip: look for ways to have fun that involve Perl 6.
-18:54 < masak> sooner or later, you'll find yourself doing something not only meaningful, but something probably closely related to the things you enjoy the
-               most.
-18:54 < pmichaud> also, don't feel as though you need our permission to do something.  :-)
-18:55 < pmichaud> we can hazard guesses as to what might be useful... but we can also be wrong.
+18:54 < masak> sooner or later, you'll find yourself doing something not only
+                      meaningful, but something probably closely related to the
+					  things you enjoy the most.
+18:54 < pmichaud> also, don't feel as though you need our permission to do
+                      something.  :-)
+18:55 < pmichaud> we can hazard guesses as to what might be useful... but we
+                      can also be wrong.
 18:56 < djanatyn> I don't know how safe it would be to give me that advice.
-18:56 < djanatyn> It took me much longer than it should have to realize that I should have been using "use strict;" ;)
+18:56 < djanatyn> It took me much longer than it should have to realize that
+                      I should have been using "use strict;" ;)
 
 
-19:04 < crked> Hi #perl6, I have a problem with regex in Rakudo.  How can I use negative char class to express one or more non-space?  I tried  <-[ ]>+ but
-it seems doesn't work
-19:04  soh_cah_toa [~soh_cah_t@pool-108-25-0-215.atclnj.east.verizon.net] has quit [Read error: Connection reset by peer]
+19:04 < crked> Hi #perl6, I have a problem with regex in Rakudo.  How can I use
+                      negative char class to express one or more non-space?
+					  I tried  <-[ ]>+ but it seems doesn't work
 19:05 < pmichaud> need to quote the space
 19:05 < pmichaud> <-[\ ]>+
 19:05 < pmichaud> (I think that works)
@@ -245,14 +269,16 @@ it seems doesn't work
 19:06 <+p6eval> rakudo 922500: OUTPUT«abc␤»
 
 
-20:27 < djanatyn> so, about using this HTML::Template library that I just installed with
-		panda...
+20:27 < djanatyn> so, about using this HTML::Template library that I just
+        installed with panda...
 20:28 < djanatyn> do I use it just like I would in perl 5?
 20:28 < masak> djanatyn: depends what you mean by "just".
 20:28 < masak> the basics are the same: 'use HTML::Template;'
-20:29 < djanatyn> Would I use "HTML::Template.new" instead of "HTML::Template->new"?
+20:29 < djanatyn> Would I use "HTML::Template.new" instead of
+        "HTML::Template->new"?
 20:30 < masak> djanatyn: you would.
-20:30 < moritz> djanatyn: well yes, you need to use the Perl 6 syntax. Look at the tests
+20:30 < moritz> djanatyn: well yes, you need to use the Perl 6 syntax. Look at
+        the tests
 20:30 < djanatyn> *oh*!
 20:31 < djanatyn> that's what the "t" directory is :D
 
@@ -287,20 +313,20 @@ it seems doesn't work
 23:36 < TimToady> well, yes :)
 23:36 < pmichaud> Yes, it's awesome.
 23:36 < jnthn> aha :)
-23:36 < pmichaud> Perl 6 strives for awesomeness.  The Perl 6 implementations strive to
-	catch up with that.  :)
+23:36 < pmichaud> Perl 6 strives for awesomeness.  The Perl 6 implementations
+    strive to catch up with that.  :)
 23:37 < pmichaud> nom:  my %h;   %h<xyz> *= 4;  say %h.perl;
 23:37 <+p6eval> nom: OUTPUT«("xyz" => 4).hashâ»
-23:37 < thundergnat> Awesome, though a little unintuitive in some of the weird corner
-	cases.
+23:37 < thundergnat> Awesome, though a little unintuitive in some of the weird
+    corner cases.
 23:37 < benabik> Does that actually call infix:<*>(), or does it call infix:<*>(4)?
 23:38 < pmichaud> it calls infix:<*>()
 23:38 < pmichaud> basically
 
 
-14:18 < bbkr> hi. what is the faster way now to convert bytes to ascii char (string
-	"01010100" to char "T" for example)? pack("B", "01010100") says "B" token
-	is not recognized.
+14:18 < bbkr> hi. what is the faster way now to convert bytes to ascii char
+    (string "01010100" to char "T" for example)? pack("B", "01010100") says "B"
+	token is not recognized.
 14:18 < flussence> rakudo: say chr(:2("01010100"))
 
 
